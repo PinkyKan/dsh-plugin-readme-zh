@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Chinese Plugin Docs",
+    "description": "Translate installed plugins' descriptions into Chinese, cache every translation segment, and re-translate only the parts a plugin update changes."
+  },
+  "translate": {
+    "button": "中文说明",
+    "title": "中文说明",
+    "close": "关闭",
+    "copy": "复制中文",
+    "copied": "已复制",
+    "retry": "重试",
+    "retranslate": "重新翻译",
+    "translateAll": "翻译全部已安装插件",
+    "loading": "正在读取插件说明…",
+    "progress": "正在翻译 {done} / {total} 段…"
+  }
+}

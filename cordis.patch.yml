@@ -1,0 +1,3 @@
+- insert:
+    - id: plugin-readme-zh
+      name: '@local/dsh-plugin-readme-zh'

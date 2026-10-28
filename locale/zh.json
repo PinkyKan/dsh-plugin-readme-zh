@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "插件说明中文翻译",
+    "description": "把已安装插件的说明翻译成中文，按段落持久化缓存；插件更新后只重新翻译改动过的部分。"
+  },
+  "translate": {
+    "button": "中文说明",
+    "title": "中文说明",
+    "close": "关闭",
+    "copy": "复制中文",
+    "copied": "已复制",
+    "retry": "重试",
+    "retranslate": "重新翻译",
+    "translateAll": "翻译全部已安装插件",
+    "loading": "正在读取插件说明…",
+    "progress": "正在翻译 {done} / {total} 段…"
+  }
+}

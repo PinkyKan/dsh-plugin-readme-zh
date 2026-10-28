@@ -1,0 +1,44 @@
+{
+  "name": "@local/dsh-plugin-readme-zh",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DSH bundle: translate installed plugins' documentation into Simplified Chinese with a persistent segment cache; list rows render Chinese natively via opt-in locale sidecars.",
+  "license": "MIT",
+  "author": "kankai",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "translation",
+    "zh-cn",
+    "localization",
+    "i18n",
+    "plugin-docs"
+  ],
+  "engines": {
+    "dsh": ">=0.2.1-rc.3",
+    "node": ">=22"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}
