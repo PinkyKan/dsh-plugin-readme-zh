@@ -1,5 +1,5 @@
 /**
- * Host half of @local/dsh-plugin-readme-zh.
+ * Host half of dsh-plugin-readme-zh.
  *
  * Reads the long description document (README / locale `meta.detail`) of an
  * installed plugin bundle through `ctx.pluginManager`, splits it into

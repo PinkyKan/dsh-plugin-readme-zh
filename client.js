@@ -1,5 +1,5 @@
 /**
- * Client half of @local/dsh-plugin-readme-zh.
+ * Client half of dsh-plugin-readme-zh.
  *
  * Adds a "中文说明" control to the head of every installed plugin's detail
  * page. The control opens a dialog that shows the plugin's long description
@@ -7,7 +7,7 @@
  * force-retranslate action, and a "translate all installed plugins" action.
  */
 window.__ModuleLoader__.load({
-  id: '@local/dsh-plugin-readme-zh',
+  id: 'dsh-plugin-readme-zh',
   factory(require) {
     const React = require('react')
     const ReactDOM = require('react-dom')

@@ -1,5 +1,5 @@
 {
-  "name": "@local/dsh-plugin-readme-zh",
+  "name": "dsh-plugin-readme-zh",
   "version": "1.0.0",
   "private": true,
   "description": "DSH bundle: translate installed plugins' documentation into Simplified Chinese with a persistent segment cache; list rows render Chinese natively via opt-in locale sidecars.",
