@@ -22,7 +22,7 @@ const PLUGIN_ID = 'dsh-plugin-readme-zh'
 const BASE = '/api/plugin-readme-zh'
 const V1_ALIAS = BASE + '/v1'
 const TARGET_LANGUAGE = 'zh-CN'
-const CACHE_SCHEMA = 1
+const CACHE_SCHEMA = 2
 /** Fixed chunk size; changing it invalidates chunk hashes, so it is not configurable. */
 const CHUNK_CHARS = 3000
 const MAX_DOCUMENT_CHARS = 400_000
@@ -100,6 +100,9 @@ function splitParts(markdown) {
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index]
     if (fence === null) {
+      // A Markdown heading starts a new section: flush the accumulated text so
+      // that the chunk hashes of later sections never depend on earlier ones.
+      if (/^#{1,6}\s+/.test(line) && buf.length > 0) flush()
       const open = /^\s*(`{3,}|~{3,})/.exec(line)
       if (open !== null) {
         flush()
@@ -142,6 +145,24 @@ function splitParts(markdown) {
   return parts
 }
 
+function splitLongLine(line, maxChars) {
+  // A single line longer than maxChars is cut at word boundaries so that no
+  // chunk ever exceeds the model's text limit.
+  if (line.length <= maxChars) return [line]
+  const pieces = []
+  let cursor = 0
+  while (cursor < line.length) {
+    let end = Math.min(cursor + maxChars, line.length)
+    if (end < line.length) {
+      const space = line.lastIndexOf(' ', end)
+      if (space > cursor) end = space + 1
+    }
+    pieces.push(line.slice(cursor, end))
+    cursor = end
+  }
+  return pieces
+}
+
 function packText(text, maxChars) {
   const lines = text.split('\n')
   const chunks = []
@@ -154,12 +175,14 @@ function packText(text, maxChars) {
       size = 0
     }
   }
-  for (const line of lines) {
-    const extra = buf.length === 0 ? line.length : line.length + 1
-    if (buf.length > 0 && size + extra > maxChars) flush()
-    if (buf.length === 0) size = line.length
-    else size += extra
-    buf.push(line)
+  for (const rawLine of lines) {
+    for (const line of splitLongLine(rawLine, maxChars)) {
+      const extra = buf.length === 0 ? line.length : line.length + 1
+      if (buf.length > 0 && size + extra > maxChars) flush()
+      if (buf.length === 0) size = line.length
+      else size += extra
+      buf.push(line)
+    }
   }
   flush()
   return chunks

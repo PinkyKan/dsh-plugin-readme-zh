@@ -39,7 +39,8 @@ These are small, additive, idempotent writes into the installed package's own di
 Every document is split into ordered Markdown segments:
 
 - fenced code blocks, HTML comment blocks, and standalone HTML tag lines are kept verbatim and never sent to the model;
-- prose is packed into chunks of at most 3000 characters at line boundaries;
+- the text is cut at every Markdown heading (`#` … `######`) first, so each section becomes its own chunk group: inserting or reordering a section changes only that section's hashes, not the rest of the document;
+- within a section, prose is packed into chunks of at most 3000 characters at line boundaries;
 - each chunk is keyed by the SHA-256 of its exact source text.
 
 The cache file records the document hash, the chunk hashes, and their translations. When a plugin is updated:
