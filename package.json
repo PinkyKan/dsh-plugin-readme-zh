@@ -1,7 +1,6 @@
 {
   "name": "dsh-plugin-readme-zh",
   "version": "1.0.0",
-  "private": true,
   "description": "DSH bundle: translate installed plugins' documentation into Simplified Chinese with a persistent segment cache; list rows render Chinese natively via opt-in locale sidecars.",
   "license": "MIT",
   "author": "kankai",
@@ -35,10 +34,16 @@
     "README.md"
   ],
   "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
       "immediately": true
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PinkyKan/dsh-plugin-readme-zh.git"
   }
 }
