@@ -151,3 +151,6 @@ vite.config.ts.timestamp-*
 # 本发行包额外忽略
 *.tgz
 .DS_Store
+
+# 投稿材料（本地保留，不入库）
+.submission/
